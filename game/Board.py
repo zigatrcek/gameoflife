@@ -1,4 +1,3 @@
-import multiprocessing
 import numpy as np
 import random
 
@@ -9,9 +8,10 @@ class Board:
         if (board is None):
             self.board = np.random.randint(low = 2, size = (width, heigth))
         else:
-            self.board = board  
+            self.board = board
 
-    def neighbours(self, collumn, row):
+
+    def neighbours(self, row, collumn):
         neighbour_count = 0
         for current_row in range(row - 1, row + 2):
                 for current_collumn in range(collumn - 1, collumn + 2):
@@ -19,28 +19,16 @@ class Board:
                         neighbour_count += self.board[current_row % self.height][current_collumn % self.width]
         return neighbour_count
 
-    def process_range(self, row_start, num_of_rows):
-        for row in range(row_start, row_start + num_of_rows):
-            for collumn in range(self.width):
-                neighbour_count = self.neighbours(collumn, row)
-                if (neighbour_count < 2 or neighbour_count > 3):  # Manj kot 2 ali več kot 3 sosedje -> umre
-                    self.new_board[row][collumn] = 0
-                elif (neighbour_count == 3):  # Točno trije sosedje -> (o)živi
-                    self.new_board[row][collumn] = 1
     
-    def iterate(self, iterations=1, threads=1):
+    def run(self, iterations=1):
         self.new_board = self.board.copy()
 
-        processes = []
-        for i in range(threads):
-            p = multiprocessing.Process(target=self.process_range, args=[])
-            processes.append(p)
-
-        for process in processes:
-            process.start()
-
-        for process in processes:
-            process.join()
+        for row, collumn in np.ndindex(self.board.shape):
+            neighbour_count = self.neighbours(row, collumn)
+            if (neighbour_count < 2 or neighbour_count > 3):  # Manj kot 2 ali več kot 3 sosedje -> umre
+                self.new_board[row][collumn] = 0
+            elif (neighbour_count == 3):  # Točno trije sosedje -> (o)živi
+                self.new_board[row][collumn] = 1
 
         self.board = self.new_board
         
