@@ -81,7 +81,8 @@ class GameOfLife:
         
 
     def __str__(self):
-        pyboard = self.board.tolist()
+        """The string representation of the current state of the board."""
+
         output = '\n'.join(' '.join(str(cell) for cell in row) for row in self.board) + '\n'
         return output
 
