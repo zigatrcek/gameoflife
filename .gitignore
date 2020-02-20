@@ -10,6 +10,7 @@
 *.userosscache
 *.sln.docstates
 /game/output.txt
+.vscode/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
