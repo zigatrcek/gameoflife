@@ -1,5 +1,7 @@
-from gameoflife import GameOfLife
 import time
+
+from GameOfLife import GameOfLife
+
 
 if (__name__ == '__main__'):
     width = int(input('Width: '))
