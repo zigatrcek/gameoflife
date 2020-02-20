@@ -1,4 +1,4 @@
-import concurrent.futures as cf
+import multiprocessing
 import numpy as np
 import random
 
@@ -20,29 +20,31 @@ class Board:
                         neighbour_count += self.board[current_row % self.height][current_collumn % self.width]
         return neighbour_count
 
-    def process_row(self, row):
-        for collumn in range(self.width):
-            neighbour_count = self.neighbours(collumn, row)
-            if (neighbour_count < 2 or neighbour_count > 3):  # Manj kot 2 ali več kot 3 sosedje -> umre
-                new_board[row][collumn] = 0
-            elif (neighbour_count == 3):  # Točno trije sosedje -> oživi
-                new_board[row][collumn] = 1
-    
-    def iterate(self):
-        new_board = self.board.copy()
-
-        for row in range(self.height):
+    def process_range(self, row_start, num_of_rows):
+        for row in range(row_start, row_start + num_of_rows):
             for collumn in range(self.width):
                 neighbour_count = self.neighbours(collumn, row)
                 if (neighbour_count < 2 or neighbour_count > 3):  # Manj kot 2 ali več kot 3 sosedje -> umre
-                    new_board[row][collumn] = 0
+                    self.new_board[row][collumn] = 0
                 elif (neighbour_count == 3):  # Točno trije sosedje -> oživi
-                    new_board[row][collumn] = 1
-        
-        # with cf.ProcessPoolExecutor() as executor:
-        #     executor.map(self.process_row, range(self.height))
+                    self.new_board[row][collumn] = 1
+    
+    def iterate(self, iterations=1, batch_size=1, threads=1):
+        self.new_board = self.board.copy()
 
-        self.board = new_board
+        processes = []
+        for _ in range(threads):
+            p = multiprocessing.Process(target=self.process_range, args=[])
+            processes.append(p)
+
+        for _ in range(iterations):
+            for process in processes:
+                process.start()
+            for process in processes:
+                process.join()
+
+            self.board = new_board
+        
 
     def __str__(self):
         return str(self.board) + '\n'
