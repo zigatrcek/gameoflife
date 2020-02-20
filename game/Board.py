@@ -8,7 +8,7 @@ class Board:
         if (board is None):
             self.board = np.random.randint(low = 2, size = (width, heigth))
         else:
-            self.board = board
+            self.board = np.array(board)
 
 
     def neighbours(self, row, column):
