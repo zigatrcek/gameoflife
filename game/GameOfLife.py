@@ -6,7 +6,7 @@ class GameOfLife:
 
     Attributes:
         width (int): The width of the board.
-        heighth (int): The heigth of the board
+        height (int): The heigt of the board
         board (list): Optional start state of the board.
     """
     
@@ -16,7 +16,7 @@ class GameOfLife:
 
         Parameters:
             width (int): The width of the board.
-            heighth (int): The height of the board
+            height (int): The height of the board
             board (list): Optional start state of the board.
         """
 
