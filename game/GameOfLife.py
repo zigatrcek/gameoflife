@@ -6,7 +6,7 @@ class GameOfLife:
 
     Attributes:
         width (int): The width of the board.
-        heighth (int): The heigth of the board
+        height (int): The heigt of the board
         board (list): Optional start state of the board.
     """
     
@@ -16,7 +16,7 @@ class GameOfLife:
 
         Parameters:
             width (int): The width of the board.
-            heighth (int): The height of the board
+            height (int): The height of the board
             board (list): Optional start state of the board.
         """
 
@@ -81,10 +81,9 @@ class GameOfLife:
         
 
     def __str__(self):
-        """The string representation of the current state of the board."""
-
-        output = '\n'.join(' '.join(str(cell) for cell in row) for row in self.board) + '\n'
-        return output
+        pyboard = self.board.tolist()
+        output = '\n'.join(' '.join(str(cell) for cell in row) for row in self.board)
+        return output + '\n'
 
         
 
