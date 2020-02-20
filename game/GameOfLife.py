@@ -10,22 +10,22 @@ class GameOfLife:
         board (list): Optional start state of the board.
     """
     
-    def __init__(self, width, heigth, board=None):
+    def __init__(self, width, height, board=None):
         """
         The constructor of the Board class.
 
         Parameters:
             width (int): The width of the board.
-            heighth (int): The heigth of the board
+            heighth (int): The height of the board
             board (list): Optional start state of the board.
         """
 
         self.width = width
-        self.height = heigth
+        self.height = height
         if (board is not None): 
             self.board = np.array(board)
         else:
-            self.board = np.random.randint(low = 2, size = (width, heigth))
+            self.board = np.random.randint(low = 2, size = (width, height))
             
 
     def cell_neighbours(self, row, column):
@@ -82,8 +82,8 @@ class GameOfLife:
 
     def __str__(self):
         pyboard = self.board.tolist()
-        output = '\n'.join(' '.join(str(cell) for cell in row) for row in self.board) + '\n'
-        return output
+        output = '\n'.join(' '.join(str(cell) for cell in row) for row in self.board)
+        return output + '\n'
 
         
 
