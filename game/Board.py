@@ -25,16 +25,23 @@ class Board:
     def run(self, iterations=1):
         self.new_board = self.board.copy()
 
-        for row, column in np.ndindex(self.board.shape):
-            neighbour_count = self.neighbours(row, column)
-            if (neighbour_count < 2 or neighbour_count > 3):  # Manj kot 2 ali več kot 3 sosedje -> umre
-                self.new_board[row][column] = 0
-            elif (neighbour_count == 3):  # Točno trije sosedje -> (o)živi
-                self.new_board[row][column] = 1
+        for _ in range(iterations):
+            for row, column in np.ndindex(self.board.shape):
+                neighbour_count = self.neighbours(row, column)
+                if (neighbour_count < 2 or neighbour_count > 3):  # Manj kot 2 ali več kot 3 sosedje -> umre
+                    self.new_board[row][column] = 0
+                elif (neighbour_count == 3):  # Točno trije sosedje -> (o)živi
+                    self.new_board[row][column] = 1
 
-        self.board = self.new_board
+            self.board = self.new_board
         
 
     def __str__(self):
-        return str(self.board) + '\n'
+        pyboard = self.board.tolist()
+        output = '\n'.join(' '.join(str(cell) for cell in row) for row in self.board) + '\n'
+        return output
+
+        
+
+
 
