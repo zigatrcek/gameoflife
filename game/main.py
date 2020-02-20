@@ -1,7 +1,5 @@
 import time
-
 from GameOfLife import GameOfLife
-
 
 if (__name__ == '__main__'):
     width = int(input('Width: '))
@@ -19,12 +17,4 @@ if (__name__ == '__main__'):
         t2 = time.time()
         
     print('Seconds:', t2 - t1)
-
-
-
-
-
-
-
-
 
