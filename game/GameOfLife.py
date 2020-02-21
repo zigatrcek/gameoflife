@@ -1,5 +1,3 @@
-from sys import exit
-
 import numpy as np
 
 class GameOfLife:
@@ -24,12 +22,10 @@ class GameOfLife:
         """
 
         if width < 3:
-            raise ValueError('<width> must be higher than 2.')
-            exit(1)
+            raise ValueError('<width> must be 3 or more.')
 
         if height < 3:
-            raise ValueError('<height> must be higher than 2.')
-            exit(1)
+            raise ValueError('<height> must be 3 or more.')
 
         self.width = width
         self.height = height
