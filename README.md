@@ -1,6 +1,6 @@
 # Game of life
 
-Implementation of Conway's game of life
+Pyhton implementation of Conway's Game of life.
 
 ## Rules
 
