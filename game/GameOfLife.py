@@ -1,3 +1,5 @@
+from sys import exit
+
 import numpy as np
 
 class GameOfLife:
@@ -6,7 +8,7 @@ class GameOfLife:
 
     Attributes:
         width (int): The width of the board.
-        height (int): The heigt of the board
+        height (int): The height of the board
         board (list): Optional start state of the board.
     """
     
@@ -18,7 +20,16 @@ class GameOfLife:
             width (int): The width of the board.
             height (int): The height of the board
             board (list): Optional start state of the board.
+            <width> and <height> must be higher than 2.
         """
+
+        if width < 3:
+            raise ValueError('<width> must be higher than 2.')
+            exit(1)
+
+        if height < 3:
+            raise ValueError('<height> must be higher than 2.')
+            exit(1)
 
         self.width = width
         self.height = height
