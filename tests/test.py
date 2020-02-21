@@ -23,3 +23,8 @@ class Test_GameOfLife(unittest.TestCase):
         self.assertEqual(result_zeros, 0)
         self.assertEqual(result_ones, 8)
         self.assertEqual(result_random, 4)
+    
+    def test_init(self):
+        self.assertRaises(ValueError, GameOfLife, -2, 5)
+        self.assertRaises(ValueError, GameOfLife, 5, -2)
+        
