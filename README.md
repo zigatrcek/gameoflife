@@ -20,7 +20,7 @@ Pyhton implementation of Conway's Game of life.
 ```python
 
  game = GameOfLife(10, 15)                              # Creates a game of life board with width 10 and height 15 (expects integer inputs).
- game = GameOfLife(10, 15, [[0, 1, 1], [0, 0, 0], [0, 1, 0]])   # Create a game of life board from a 2D dimensional list of 1 and 0.
+ game = GameOfLife(3, 3, [[0, 1, 1], [0, 0, 0], [0, 1, 0]])   # Create a game of life board from a 2D dimensional list of 1 and 0.
 
  game.run()                                             # Runs the game of life for one iteration, returns the final state.
  game.run(5)                                            # Runs the game of life for a specified amount of iterations, returns the final state.
